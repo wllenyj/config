@@ -1,0 +1,25 @@
+#term xterm-256color
+term screen-256color
+#
+#attrcolor b ".I"    # allow bold colors - necessary for some reason
+#termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'   # tell screen how to set colors. AB = background, AF=foreground
+#
+#attrcolor b ".I"
+## tell screen how to set colors. AB = background, AF=foreground
+#termcapinfo xterm-256color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+#
+#defbce on    # use current bg color for erased chars
+
+# 下标签设置  
+hardstatus on  
+caption always "%{= kw}%-w%{= kG}%{+b}[%n %t]%{-b}%{= kw}%+w %=%d %M %{g}%H%{-}"  
+#caption always "%?%F%{-b 4w}%:%{-b bb}%? %H | %l | %m-%d %c |%?%F%{-b 4w}%?%L=%-Lw%45>%{-b w4}%n%f* %t%{-}%+Lw%-0<"
+#caption always "%?%F%{.R.}%?%3n %t%? [%h]%?"  
+
+termcapinfo xterm* 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
+
+bindkey -k k1 select 0
+bindkey -k k2 select 1
+bindkey -k k3 select 2
+bindkey -k k4 select 3
+bindkey -k k5 select 5

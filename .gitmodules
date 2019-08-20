@@ -1,0 +1,12 @@
+[submodule "vim-go"]
+	path = vim/pack/plugins/start/vim-go
+	url = https://github.com/fatih/vim-go
+[submodule "tagbar"]
+	path = vim/pack/plugins/start/tagbar
+	url = https://github.com/majutsushi/tagbar
+[submodule "rust.vim"]
+	path = vim/pack/plugins/start/rust.vim
+	url = https://github.com/rust-lang/rust.vim
+[submodule "vim-racer"]
+	path = vim/pack/plugins/start/vim-racer
+	url = https://github.com/racer-rust/vim-racer
