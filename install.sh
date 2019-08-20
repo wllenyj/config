@@ -8,14 +8,15 @@ HERE=$(readlink -f $0)
 CUR_PATH=$(cd $(dirname $HERE) && pwd)
 ((DEBUG)) && echo $CUR_PATH
 
-echo "
-source $CUR_PATH/bash/prompt.sh
-" >> $HOME/.bashrc
+grep "bash/prompt.sh" $HOME/.bashrc >> /dev/null
+if [[ $? != 0 ]]; then
+    echo -e "\nsource $CUR_PATH/bash/prompt.sh" >> $HOME/.bashrc
+fi
 
 . $HOME/.bashrc
 
 if [[ ! -d $HOME/.vim ]]; then
-    ln -s $CUR_PATH/vim/vim $HOME/.vim
+    ln -s $CUR_PATH/vim $HOME/.vim
 fi
 
 if [[ ! -d $HOME/.screenrc ]]; then
