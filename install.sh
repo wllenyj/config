@@ -13,7 +13,7 @@ if [[ $? != 0 ]]; then
     echo -e "\nsource $CUR_PATH/bash/prompt.sh" >> $HOME/.bashrc
 fi
 
-. $HOME/.bashrc
+source $HOME/.bashrc
 
 if [[ ! -d $HOME/.vim ]]; then
     ln -s $CUR_PATH/vim $HOME/.vim

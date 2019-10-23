@@ -35,7 +35,9 @@ case $TERM in
         ;;
 esac
 
-if [ "x$SSH3_CONNECTION" != "x" ]; then
+if [ "x$SSH_CONNECTION" != x ]; then
+  LOCAL_IP=`echo "$SSH_CONNECTION" | awk '{print $3}'`
+elif [ "x$SSH3_CONNECTION" != "x" ]; then
   LOCAL_IP=`echo "$SSH_CONNECTION" | awk '{print $3}'`
 elif [ "x$SSH2_CONNETCION" != x ]; then
   LOCAL_IP=`echo "$SSH2_CONNECTION" | awk '{print $3}'`

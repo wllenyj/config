@@ -22,4 +22,4 @@ bindkey -k k1 select 0
 bindkey -k k2 select 1
 bindkey -k k3 select 2
 bindkey -k k4 select 3
-bindkey -k k5 select 5
+bindkey -k k5 select 4
