@@ -42,7 +42,7 @@ elif [ "x$SSH3_CONNECTION" != "x" ]; then
 elif [ "x$SSH2_CONNETCION" != x ]; then
   LOCAL_IP=`echo "$SSH2_CONNECTION" | awk '{print $3}'`
 else
-  LOCAL_IP=`/sbin/ifconfig | grep -w 'inet' | grep -v '127.0.0.1' | grep -v '172\.' | awk '{print $2}'`
+  LOCAL_IP=`/sbin/ifconfig | grep -w 'inet' | grep -v '127.0.0.1' | head -n 1 | awk '{print $2}'`
 fi
   
 LOCAL_IP=${LOCAL_IP:=`hostname`}
