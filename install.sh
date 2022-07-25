@@ -27,3 +27,13 @@ if [[ ! -d $HOME/.tmux.conf ]]; then
     ln -s $CUR_PATH/bash/tmux.conf $HOME/.tmux.conf
 fi
 
+if [[ ! -d $HOME/.config/nvim ]]; then
+    echo 'not exist .config/nvim dir'
+    mkdir $HOME/.config
+else
+    echo 'exist .config/nvim dir'
+fi
+if [[ ! -d $HOME/.config/nvim/init.vim ]]; then
+    ln -s $CUR_PATH/nvim/init.vim $HOME/.config/nvim/init.vim
+fi
+
