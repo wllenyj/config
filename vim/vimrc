@@ -22,8 +22,8 @@ set nocompatible                " Enables us Vim specific features
 filetype off                    " Reset filetype detection first ...
 filetype plugin indent on       " ... and enable filetype detection
 set ttyfast                     " Indicate fast terminal conn for faster redraw
-set ttymouse=xterm2             " Indicate terminal type for mouse codes
-set ttyscroll=3                 " Speedup scrolling
+"set ttymouse=xterm2             " Indicate terminal type for mouse codes
+"set ttyscroll=3                 " Speedup scrolling
 set laststatus=2                " Show status line always
 set encoding=utf-8              " Set default encoding to UTF-8
 set autoread                    " Automatically read changed files
@@ -45,11 +45,12 @@ set noshowmatch                 " Do not show matching brackets by flickering
 set noshowmode                  " We show the mode with airline or lightline
 "set ignorecase                  " Search case insensitive...
 "set smartcase                   " ... but not it begins with upper case
-set completeopt=menu,menuone    " Show popup menu, even if there is one entry
+set completeopt=menu,menuone,noinsert,noselect    " Show popup menu, even if there is one entry
 set pumheight=10                " Completion window max size
 set nocursorcolumn              " Do not highlight column (speeds up highlighting)
 set nocursorline                " Do not highlight cursor (speeds up highlighting)
 set lazyredraw                  " Wait to redraw
+
 
 "set formatoptions-=cro          " Disable automatic comment insertion
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -64,7 +65,7 @@ endif
 " This enables us to undo files even if you exit Vim.
 if has('persistent_undo')
   set undofile
-  set undodir=~/.config/vim/tmp/undo//
+  set undodir=~/.config/vim/tmp/undo/
 endif
 
 " Colorscheme
@@ -77,6 +78,11 @@ colorscheme molokai
 " Tagbar
 let g:tagbar_left=1
 
+" Tabnine
+" let g:ycm_auto_trigger = 0
+" let g:ycm_key_invoke_completion = '<C-n>'
+
+
 """"""""""""""""""""""
 "      Mappings      "
 """"""""""""""""""""""
@@ -84,10 +90,16 @@ let g:tagbar_left=1
 " Set leader shortcut to a comma ','. By default it's the backslash
 let mapleader = ","
 
-" Jump to next error with Ctrl-n and previous error with Ctrl-m. Close the
+" Jump to next error with <leader>n and previous error with <leader>m. Close the
 " quickfix window with <leader>a
-map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
+"map <leader>n :lnext<CR>
+"map <leader>m :lprev<CR>
+"map <leader>a :lclose<CR>
+
+" Jump to next error with Ctrl-n and previous error with Ctrl-m. Close the
+" Location List [LC] window with <leader>a
+map <C-n> :cn<CR>   
+map <C-m> :cp<CR>
 nnoremap <leader>a :cclose<CR>
 
 " Visual linewise up and down by default (and use gj gk to go quicker)
@@ -112,17 +124,29 @@ autocmd BufNewFile,BufRead * setlocal expandtab tabstop=4 shiftwidth=4
 """""""""""""""""""""
 "      Plugins      "
 """""""""""""""""""""
-" rust
-let g:racer_cmd = "~/.cargo/bin/racer"
+" rust Racer
+"let g:racer_cmd = "~/.cargo/bin/racer"
+"let g:racer_experimental_completer = 1
+"let g:LanguageClient_serverCommands = {
+"    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
+"    \ }
 
-augroup rust
-  "autocmd!
-  autocmd BufNewFile,BufRead *.rs setlocal expandtab tabstop=4 shiftwidth=4
-  au FileType rust nmap gd <Plug>(rust-def)
-  "au FileType rust nmap <leader>v <Plug>(rust-def-split)
-  au FileType rust nmap <leader>v <Plug>(rust-def-vertical)
-  au FileType rust nmap <leader>gd <Plug>(rust-doc)
-augroup END
+" Rust nvim LanguageClient
+"let g:LanguageClient_serverCommands = {
+"    \ 'rust': ['rust-analyzer'],
+"    \ }
+""let g:LanguageClient_diagnosticsDisplay = {}
+"let g:LanguageClient_hideVirtualTextsOnInsert = 1
+""let g:LanguageClient_diagnosticsEnable=0
+"let g:LanguageClient_useVirtualText= "No"
+""let g:LanguageClient_changeThrottle = 5
+""let $RUST_BACKTRACE = 1
+""let g:LanguageClient_loggingLevel = 'DEBUG'
+""let g:LanguageClient_virtualTextPrefix = ''
+""let g:LanguageClient_loggingFile =  expand('/tmp/LanguageClient.log')
+""let g:LanguageClient_serverStderr = expand('/tmp/LanguageServer.log')
+
+
 
 " vim-go
 let g:go_fmt_command = "goimports"
@@ -154,13 +178,13 @@ augroup go
   autocmd FileType go nmap <leader>t  <Plug>(go-test)
 
   " :GoRun
-  autocmd FileType go nmap <leader>r  <Plug>(go-run)
+  "autocmd FileType go nmap <leader>r  <Plug>(go-run)
 
   " :GoDoc
   autocmd FileType go nmap <Leader>d <Plug>(go-doc)
 
   " :GoCoverageToggle
-  autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+  "autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
 
   " :GoInfo
   autocmd FileType go nmap <Leader>i <Plug>(go-info)
@@ -171,7 +195,9 @@ augroup go
   " :GoDef but opens in a vertical split
   autocmd FileType go nmap <Leader>v <Plug>(go-def-vertical)
   " :GoDef but opens in a horizontal split
-  autocmd FileType go nmap <Leader>s <Plug>(go-def-split)
+  autocmd FileType go nmap <Leader>s <Plug>(go-def-split) 
+  autocmd FileType go nmap gr <Plug>(go-referrers)
+  autocmd FileType go nmap gc <Plug>(go-callers)
 
   " :GoAlternate  commands :A, :AV, :AS and :AT
   autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
