@@ -29,7 +29,7 @@ fi
 
 if [[ ! -d $HOME/.config/nvim ]]; then
     echo 'not exist .config/nvim dir'
-    mkdir $HOME/.config
+    mkdir -p $HOME/.config/nvim
 else
     echo 'exist .config/nvim dir'
 fi
