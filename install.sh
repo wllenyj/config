@@ -23,3 +23,7 @@ if [[ ! -d $HOME/.screenrc ]]; then
     ln -s $CUR_PATH/bash/screenrc $HOME/.screenrc
 fi
 
+if [[ ! -d $HOME/.tmux.conf ]]; then
+    ln -s $CUR_PATH/bash/tmux.conf $HOME/.tmux.conf
+fi
+
