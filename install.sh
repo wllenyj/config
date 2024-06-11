@@ -29,11 +29,10 @@ fi
 
 if [[ ! -d $HOME/.config/nvim ]]; then
     echo 'not exist .config/nvim dir'
-    mkdir -p $HOME/.config/nvim
+    if [[ ! -d $HOME/.config/nvim/init.vim ]]; then
+        ln -s $CUR_PATH/nvim/init.vim $HOME/.config/nvim/init.vim
+    fi
 else
     echo 'exist .config/nvim dir'
-fi
-if [[ ! -d $HOME/.config/nvim/init.vim ]]; then
-    ln -s $CUR_PATH/nvim/init.vim $HOME/.config/nvim/init.vim
 fi
 

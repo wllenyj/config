@@ -1,151 +1,21 @@
+" **********************************
+"       Vim Compatible
+" **********************************
 set jumpoptions=stack
 set runtimepath^=~/.vim runtimepath+=~/.vim/plugin
 let &packpath = &runtimepath
 source ~/.vim/vimrc
 
-call plug#begin('~/.local/share/nvim/plugged')
-  Plug 'neovim/nvim-lspconfig'
-  Plug 'hrsh7th/nvim-cmp'
-  Plug 'hrsh7th/cmp-nvim-lsp'
-  Plug 'dcampos/nvim-snippy'
-  Plug 'dcampos/cmp-snippy'
-  Plug 'tjdevries/lsp_extensions.nvim'
-  Plug 'jlanzarotta/bufexplorer'
-  Plug 'dhananjaylatkar/cscope_maps.nvim'
-  Plug 'vim-airline/vim-airline'
-call plug#end()
-  " Configure lsp
-  " https://github.com/neovim/nvim-lspconfig#rust_analyzer
+
+" **********************************
+"       Lua Init 
+" **********************************
+lua require('init')
 
 
-lua << EOF
-    --vim.lsp.set_log_level("debug")
-    require("cscope_maps").setup({
-        disable_maps = false,
-        skip_input_prompt = true,
-        cscope = {
-            skip_picker_for_single_result = true,
-        }
-    })
-    local nvim_lsp = require'lspconfig'
-
-  	-- Setup lspconfig.
-	local function create_capabilities()
-	  local capabilities = vim.lsp.protocol.make_client_capabilities()
-	  capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-	  return capabilities
-	end
-    
-    nvim_lsp.rust_analyzer.setup({
-        on_attach=on_attach,
-		capabilities = create_capabilities(),
-        settings = {
-            ["rust-analyzer"] = {
-                --linkedProjects = {
-                --    "out/default/rust-project.json",
-                --    "Cargo.toml",
-                --},
-                --assist = {
-                --    importGranularity = "module",
-                --    importPrefix = "by_self",
-                --},
-                cargo = {
-                    features = "all",
-                },
-                checkOnSave = {
-                    features = "all",
-                },
-                --workspace = {
-                --    symbol = {
-                --        search = {
-                --            limit = 10,
-                --        }
-                --    }
-                --}
-            }
-        }
-    })
-    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-      vim.lsp.diagnostic.on_publish_diagnostics, {
-        -- This will disable virtual text, like doing:
-        -- let g:diagnostic_enable_virtual_text = 0
-        virtual_text = false,
-    
-        -- This is similar to:
-        -- let g:diagnostic_show_sign = 1
-        -- To configure sign display,
-        --  see: ":help vim.lsp.diagnostic.set_signs()"
-        signs = true,
-    
-        -- This is similar to:
-        -- "let g:diagnostic_insert_delay = 1"
-        update_in_insert = false,
-    	underline = false,
-      }
-    )
-
-    local has_words_before = function()
-      local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-    end
-
-    local snippy = require("snippy")
-    local cmp = require'cmp'
-
-    cmp.setup({
-  		completion = {
-			completeopt = 'menu,menuone,noinsert',
-  		},
-  		preselect = cmp.PreselectMode.None,
-    	snippet = {
-    	  -- REQUIRED - you must specify a snippet engine
-    	  expand = function(args)
-    	    require('snippy').expand_snippet(args.body) -- For `snippy` users.
-    	  end,
-    	},
-		mapping = {
-      		['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-      		['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-      		['<C-n>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-      		['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-      		['<C-e>'] = cmp.mapping({
-      		  i = cmp.mapping.abort(),
-      		  c = cmp.mapping.close(),
-      		}),
-			-- Enter
-      		['<CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-			["<Tab>"] = cmp.mapping(function(fallback)
-      			if cmp.visible() then
-      			  cmp.select_next_item()
-      			elseif snippy.can_expand_or_advance() then
-      			  snippy.expand_or_advance()
-      			elseif has_words_before() then
-      			  cmp.complete()
-      			else
-      			  fallback()
-      			end
-    		end, { "i", "s" }),
-
-    		["<S-Tab>"] = cmp.mapping(function(fallback)
-    		  if cmp.visible() then
-    		    cmp.select_prev_item()
-    		  elseif snippy.can_jump(-1) then
-    		    snippy.previous()
-    		  else
-    		    fallback()
-    		  end
-    		end, { "i", "s" }),
-	 	},
-		reason = cmp.ContextReason.Manual,
-		sources = cmp.config.sources({
-    		  { name = 'nvim_lsp', priority = 80 },
-    		  { name = 'snippy', priority = 10 }, -- For snippy users.
-    		}, {
-    		{ name = 'buffer', priority = 30 },
-    	})
-    })
-EOF
-
+" **********************************
+"       Global Config
+" **********************************
 let g:bufExplorerShowRelativePath=1
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#tabline#show_splits = 1
