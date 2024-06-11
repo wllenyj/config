@@ -30,6 +30,12 @@ endif
 " vertical split lines should look like a line instead of a dashed one
 set fillchars+=vert:│
 
+" 
+"hi @variable guifg=#000000
+"hi @property guifg=#000000
+"hi @field guifg=#000000
+"hi @lsp.type.variable guifg=#000000
+"hi @lsp.type.property guifg=#000000
 
 hi Boolean         guifg=#AE81FF
 hi Character       guifg=#E6DB74

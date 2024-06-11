@@ -26,28 +26,29 @@
 
 " This tests to see if vim was configured with the '--enable-cscope' option
 " when it was compiled.  If it wasn't, time to recompile vim... 
-if has("cscope") && filereadable("/usr/bin/cscope") && filereadable("cscope.out")
-	set csprg=/usr/bin/cscope
-	set csto=0
-	set cst
-	set nocsverb
+" if has("cscope") && filereadable("/usr/bin/cscope") && filereadable("cscope.out")
+if filereadable("cscope.out")
+	" set csprg=/usr/bin/cscope
+	" set csto=0
+	" set cst
+	" set nocsverb
 	" add any database in current directory
-	if filereadable("cscope.out")
-		cs add $PWD/cscope.out
-		" else add database pointed to by environment
-	elseif $CSCOPE_DB != ""
-		cs add $CSCOPE_DB
-	endif
-	set csverb
+	"if filereadable("cscope.out")
+	"	cs add $PWD/cscope.out
+	"	" else add database pointed to by environment
+	"elseif $CSCOPE_DB != ""
+	"	cs add $CSCOPE_DB
+	"endif
+	"set csverb
 
 	""""""""""""" Standard cscope/vim boilerplate
 
 	" use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
-	set cscopetag
+	"set cscopetag
 
 	" check cscope for definition of a symbol before checking ctags: set to 1
 	" if you want the reverse search order.
-	set csto=0
+	"set csto=0
 
 	" add any cscope database in current directory
 	"if filereadable("cscope.out")
@@ -58,7 +59,7 @@ if has("cscope") && filereadable("/usr/bin/cscope") && filereadable("cscope.out"
 	"endif
 
 	" show msg when any other cscope db added
-	set cscopeverbose  
+	"set cscopeverbose  
 
 
 	""""""""""""" My cscope/vim key mappings
@@ -100,14 +101,14 @@ if has("cscope") && filereadable("/usr/bin/cscope") && filereadable("cscope.out"
 	" go back to where you were before the search.  
 	"
 
-	nmap gs :cs find s <C-R>=expand("<cword>")<CR><CR>	
-	nmap gd :cs find g <C-R>=expand("<cword>")<CR><CR>	
-	nmap gc :cs find c <C-R>=expand("<cword>")<CR><CR>	
-	nmap gt :cs find t <C-R>=expand("<cword>")<CR><CR>	
-	nmap ge :cs find e <C-R>=expand("<cword>")<CR><CR>	
-	nmap gf :cs find f <C-R>=expand("<cfile>")<CR><CR>	
-	nmap gi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-	nmap gr :cs find d <C-R>=expand("<cword>")<CR><CR>	
+	"nmap gs :Cscope find s <C-R>=expand("<cword>")<CR><CR>	
+	"nmap gd :Cscope find g <C-R>=expand("<cword>")<CR><CR>	
+	"nmap gc :Cscope find c <C-R>=expand("<cword>")<CR><CR>	
+	"nmap gt :Cscope find t <C-R>=expand("<cword>")<CR><CR>	
+	"nmap ge :Cscope find e <C-R>=expand("<cword>")<CR><CR>	
+	"nmap gf :Cscope find f <C-R>=expand("<cfile>")<CR><CR>	
+	"nmap gi :Cscope find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+	"nmap gr :Cscope find d <C-R>=expand("<cword>")<CR><CR>	
 
 
 	" Using 'CTRL-spacebar' (intepreted as CTRL-@ by vim) then a search type
@@ -133,17 +134,17 @@ if has("cscope") && filereadable("/usr/bin/cscope") && filereadable("cscope.out"
 	"
 	" (Note: you may wish to put a 'set splitright' in your .vimrc
 	" if you prefer the new window on the right instead of the left
-	set splitright
+	" set splitright
 
     "nmap <C-@><C-@>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
-	nmap <leader>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
-	nmap <leader>d :vert scs find g <C-R>=expand("<cword>")<CR><CR>
-	nmap <leader>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
-	nmap <leader>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
-	nmap <leader>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
-	nmap <leader>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>	
-	nmap <leader>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>	
-	nmap <leader>r :vert scs find d <C-R>=expand("<cword>")<CR><CR>
+	" nmap <leader>s :vert Cscope find s <C-R>=expand("<cword>")<CR><CR>
+	" nmap <leader>d :vert Cscope find g <C-R>=expand("<cword>")<CR><CR>
+	" nmap <leader>c :vert Cscope find c <C-R>=expand("<cword>")<CR><CR>
+	" nmap <leader>t :vert Cscope find t <C-R>=expand("<cword>")<CR><CR>
+	" nmap <leader>e :vert Cscope find e <C-R>=expand("<cword>")<CR><CR>
+	" nmap <leader>f :vert Cscope find f <C-R>=expand("<cfile>")<CR><CR>	
+	" nmap <leader>i :vert Cscope find i ^<C-R>=expand("<cfile>")<CR>$<CR>	
+	" nmap <leader>r :vert Cscope find d <C-R>=expand("<cword>")<CR><CR>
 
 
 	""""""""""""" key map timeouts

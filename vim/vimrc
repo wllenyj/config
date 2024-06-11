@@ -61,6 +61,8 @@ if has('unnamedplus')
   set clipboard^=unnamed
   set clipboard^=unnamedplus
 endif
+" don't copy to system clipboard
+"set clipboard=
 
 " This enables us to undo files even if you exit Vim.
 if has('persistent_undo')
@@ -100,6 +102,7 @@ let mapleader = ","
 " Location List [LC] window with <leader>a
 map <C-n> :cn<CR>   
 map <C-m> :cp<CR>
+nnoremap <leader>o :.cc<CR>
 nnoremap <leader>a :cclose<CR>
 
 " Visual linewise up and down by default (and use gj gk to go quicker)
@@ -124,29 +127,6 @@ autocmd BufNewFile,BufRead * setlocal expandtab tabstop=4 shiftwidth=4
 """""""""""""""""""""
 "      Plugins      "
 """""""""""""""""""""
-" rust Racer
-"let g:racer_cmd = "~/.cargo/bin/racer"
-"let g:racer_experimental_completer = 1
-"let g:LanguageClient_serverCommands = {
-"    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
-"    \ }
-
-" Rust nvim LanguageClient
-"let g:LanguageClient_serverCommands = {
-"    \ 'rust': ['rust-analyzer'],
-"    \ }
-""let g:LanguageClient_diagnosticsDisplay = {}
-"let g:LanguageClient_hideVirtualTextsOnInsert = 1
-""let g:LanguageClient_diagnosticsEnable=0
-"let g:LanguageClient_useVirtualText= "No"
-""let g:LanguageClient_changeThrottle = 5
-""let $RUST_BACKTRACE = 1
-""let g:LanguageClient_loggingLevel = 'DEBUG'
-""let g:LanguageClient_virtualTextPrefix = ''
-""let g:LanguageClient_loggingFile =  expand('/tmp/LanguageClient.log')
-""let g:LanguageClient_serverStderr = expand('/tmp/LanguageServer.log')
-
-
 
 " vim-go
 let g:go_fmt_command = "goimports"

@@ -11,6 +11,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'dcampos/cmp-snippy'
   Plug 'tjdevries/lsp_extensions.nvim'
   Plug 'jlanzarotta/bufexplorer'
+  Plug 'dhananjaylatkar/cscope_maps.nvim'
   Plug 'vim-airline/vim-airline'
 call plug#end()
   " Configure lsp
@@ -18,12 +19,20 @@ call plug#end()
 
 
 lua << EOF
+    --vim.lsp.set_log_level("debug")
+    require("cscope_maps").setup({
+        disable_maps = false,
+        skip_input_prompt = true,
+        cscope = {
+            skip_picker_for_single_result = true,
+        }
+    })
     local nvim_lsp = require'lspconfig'
 
   	-- Setup lspconfig.
 	local function create_capabilities()
 	  local capabilities = vim.lsp.protocol.make_client_capabilities()
-	  capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+	  capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 	  return capabilities
 	end
     
@@ -32,20 +41,27 @@ lua << EOF
 		capabilities = create_capabilities(),
         settings = {
             ["rust-analyzer"] = {
-                assist = {
-                    importGranularity = "module",
-                    importPrefix = "by_self",
-                },
+                --linkedProjects = {
+                --    "out/default/rust-project.json",
+                --    "Cargo.toml",
+                --},
+                --assist = {
+                --    importGranularity = "module",
+                --    importPrefix = "by_self",
+                --},
                 cargo = {
-                    loadOutDirsFromCheck = true,
-                    allFeatures = true
+                    features = "all",
                 },
                 checkOnSave = {
-                    allFeatures = true,
+                    features = "all",
                 },
-                procMacro = {
-                    enable = true
-                },
+                --workspace = {
+                --    symbol = {
+                --        search = {
+                --            limit = 10,
+                --        }
+                --    }
+                --}
             }
         }
     })
@@ -79,7 +95,6 @@ lua << EOF
     cmp.setup({
   		completion = {
 			completeopt = 'menu,menuone,noinsert',
-  		 	autocomplete = true,
   		},
   		preselect = cmp.PreselectMode.None,
     	snippet = {
@@ -159,6 +174,8 @@ nmap <leader>+ <Plug>AirlineSelectNextTab
 augroup rust
   " Avoid showing extra messages when using completion
   set shortmess+=c
+
+  let g:rustfmt_options = '--edition=2021'
   
   "let g:completion_enable_auto_popup = 0
   " Trigger completion with <tab>
