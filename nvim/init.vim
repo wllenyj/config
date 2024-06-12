@@ -102,19 +102,4 @@ augroup rust
   nnoremap <silent> gw    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
   nnoremap <silent> gc    <cmd>lua vim.lsp.buf.declaration()<CR>
 
-  " LanguageClient
-  "au FileType rust nmap gm <Plug>(lcn-menu)
-  "au FileType rust nmap gd <Plug>(lcn-definition)
-  "au FileType rust nmap gt <Plug>(lcn-type-definition)
-  "au FileType rust nmap gr <Plug>(lcn-references)
-  "au FileType rust nmap gi <Plug>(lcn-implementation)
-  ""nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-  ""nnoremap <silent><buffer> <leader>v :vsplit<CR>:call LanguageClient#textDocument_definition()<CR>
-  "nnoremap <silent> <leader>v :call LanguageClient#textDocument_definition({'gotoCmd': 'vsplit'})<CR>
-
-  " Racer
-  ""au FileType rust nmap <leader>v <Plug>(rust-def-split)
-  ""au FileType rust nmap <leader>v <Plug>(rust-def-vertical)
-  ""au FileType rust nmap <leader>gd <Plug>(rust-doc)
-  ""autocmd FileType rust nmap <buffer> gx         <Plug>(rust-def-vertical)
 augroup END
