@@ -40,4 +40,4 @@ SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3dFFCC66
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/opt/homebrew/opt/node\x4020/bin\x1e/Users/wanglei52/work/code/xzos/xzos/prebuilt/third_party/ninja/mac\x2darm64\x1e/Users/wanglei52/work/code/xzos/xzos/prebuilt/third_party/gn/mac\x2darm64
+SETUVAR fish_user_paths:/homebrew/opt/node\x4020/bin
