@@ -3,3 +3,6 @@
 -- Add any additional options here
 
 vim.g.autoformat = false
+
+-- popup window no transparency
+vim.opt.pumblend = 0
