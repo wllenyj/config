@@ -6,6 +6,7 @@
 
 
 # -- bindings ------------------------------------------------------------------
+set -g default-terminal "xterm-256color"
 # Change the prefix key to C-q
 set -g prefix C-q
 unbind C-b
