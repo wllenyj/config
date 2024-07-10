@@ -39,5 +39,12 @@ return {
         desc = "grep under string",
       },
     },
+    opts = {
+      defaults = {
+        path_display = {
+          "smart",
+        },
+      },
+    },
   },
 }
