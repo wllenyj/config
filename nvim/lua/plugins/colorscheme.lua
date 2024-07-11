@@ -1,8 +1,12 @@
+--vim.highlight.priorities.semantic_tokens = 95
 return {
   {
     "LazyVim/LazyVim",
     opts = {
+      --colorscheme = "molokai-ori",
       colorscheme = "gruvbox",
+
+      --colorscheme = "onedark",
 
       --colorschem = "tokyonight-night",
       --colorscheme = "tokyonight-storm",
@@ -12,11 +16,12 @@ return {
       --colorscheme = "catppuccin-latte",
       --colorscheme = "catppuccin-frappe",
       --colorscheme = "catppuccin-macchiato",
-      --colorscheme= = "catppuccin-mocha",
+      --colorscheme = "catppuccin-mocha",
     },
   },
   {
     "ellisonleao/gruvbox.nvim",
+    lazy = true,
     config = function()
       --vim.o.background = "light"
       vim.o.background = "dark"
@@ -31,5 +36,23 @@ return {
     "catppuccin/nvim",
     lazy = true,
     name = "catppuccin",
+  },
+  {
+    "navarasu/onedark.nvim",
+    lazy = true,
+    -- dark, darker, cool, deep, warm, warmer, light
+    opts = { style = "warmer" },
+  },
+  {
+    "UtkarshVerma/molokai.nvim",
+    lazy = true,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      highlight = {
+        disable = { "rust" },
+      },
+    },
   },
 }
