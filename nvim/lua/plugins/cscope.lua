@@ -4,9 +4,10 @@ return {
     dependencies = {
       "nvim-telescope/telescope.nvim",
     },
-    config = function(_, opts)
-      require("cscope_maps").setup(opts)
-    end,
+    lazy = false,
+    --config = function(_, opts)
+    --  require("cscope_maps").setup(opts)
+    --end,
     opts = {
       prefix = "<localleader>g",
       skip_input_prompt = true,
