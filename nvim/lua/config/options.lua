@@ -6,3 +6,5 @@ vim.g.autoformat = false
 
 -- popup window no transparency
 vim.opt.pumblend = 0
+
+--vim.lsp.inlay_hint.enable = false
