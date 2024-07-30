@@ -1,12 +1,29 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
+  keys = {
+    {
+      "<leader>e",
+      function()
+        vim.cmd("Neotree reveal_force_cwd")
+      end,
+      desc = "Explorer NeoTree (reveal_force_cwd))",
+    },
+    {
+      "<leader>E",
+      function()
+        require("neo-tree.command").execute({ toggle = true, dir = vim.uv.cwd() })
+      end,
+      desc = "Explorer NeoTree (cwd)",
+      remap = true,
+    },
+  },
   opts = {
     filesystem = {
-        window = {
-            mappings = {
-                ["/"] = "noop",
-            },
+      window = {
+        mappings = {
+          ["/"] = "noop",
         },
+      },
     },
     event_handlers = {
       {
@@ -18,25 +35,6 @@ return {
           require("neo-tree.command").execute({ action = "close" })
         end,
       },
-    },
-    keys = {
-      {
-        "<leader>fE",
-        function()
-          require("neo-tree.command").execute({ toggle = true, dir = vim.uv.cwd() })
-          --require("neo-tree.command").execute({ toggle = true, dir = LazyVim.root() })
-        end,
-        desc = "Explorer NeoTree (Root Dir)",
-      },
-      { "<leader>E", "<leader>fE", desc = "Explorer NeoTree (Root Dir)", remap = true },
-      {
-        "<leader>fe",
-        function()
-          require("neo-tree.command").execute({ toggle = true, reveal = true, position = "current" })
-        end,
-        desc = "Explorer NeoTree (Root Dir)",
-      },
-      { "<leader>e", "<leader>fe", desc = "Explorer NeoTree (cwd)", remap = true },
     },
   },
 }
