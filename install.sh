@@ -19,8 +19,14 @@ if [[ ! -d $HOME/.vim ]]; then
 	ln -s $CUR_PATH/vim $HOME/.vim
 fi
 
-if [[ ! -d $HOME/.screenrc ]]; then
-	ln -s $CUR_PATH/bash/screenrc $HOME/.screenrc
+#if [[ ! -d $HOME/.screenrc ]]; then
+#	ln -s $CUR_PATH/bash/screenrc $HOME/.screenrc
+#fi
+
+if [[ ! -d $HOME/.config/fish ]]; then
+	ln -s $CUR_PATH/fish $HOME/.config/fish
+else
+	echo 'exist .config/fish'
 fi
 
 if [[ ! -d $HOME/.config/tmux ]]; then
@@ -30,10 +36,14 @@ else
 fi
 
 if [[ ! -d $HOME/.config/nvim ]]; then
-	echo 'not exist .config/nvim dir'
-	if [[ ! -d $HOME/.config/nvim/init.vim ]]; then
-		ln -s $CUR_PATH/nvim/init.vim $HOME/.config/nvim/init.vim
-	fi
+	#mkdir $HOME/.config/nvim
+	ln -s $CUR_PATH/nvim $HOME/.config/nvim
 else
-	echo 'exist .config/nvim dir'
+	echo 'exist .config/nvim'
+fi
+
+if [[ ! -d $HOME/.config/gitui ]]; then
+	ln -s $CUR_PATH/gitui $HOME/.config/gitui
+else
+	echo 'exist .config/gitui'
 fi
