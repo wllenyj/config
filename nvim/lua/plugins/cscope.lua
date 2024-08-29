@@ -2,6 +2,7 @@ return {
   {
     "dhananjaylatkar/cscope_maps.nvim",
     dependencies = {
+      "folke/which-key.nvim",
       "nvim-telescope/telescope.nvim",
     },
     lazy = false,
@@ -14,7 +15,7 @@ return {
       cscope = {
         picker = "telescope",
         skip_picker_for_single_result = true,
-        db_build_cmd_args = { "-bqkv" },
+        db_build_cmd_args = { "-Rbqkv" },
       },
     },
   },
