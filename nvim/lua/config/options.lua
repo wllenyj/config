@@ -8,4 +8,5 @@ vim.g.autoformat = false
 vim.opt.pumblend = 0
 
 vim.opt.jumpoptions = "stack"
+vim.opt.relativenumber = false
 --vim.lsp.inlay_hint.enable = false
