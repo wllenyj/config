@@ -7,4 +7,5 @@ vim.g.autoformat = false
 -- popup window no transparency
 vim.opt.pumblend = 0
 
+vim.opt.jumpoptions = "stack"
 --vim.lsp.inlay_hint.enable = false
