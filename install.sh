@@ -47,3 +47,9 @@ if [[ ! -d $HOME/.config/gitui ]]; then
 else
 	echo 'exist .config/gitui'
 fi
+
+if [[ ! -d $HOME/.config/zellij ]]; then
+	ln -s $CUR_PATH/zellij $HOME/.config/zellij
+else
+	echo 'exist .config/zellij'
+fi
