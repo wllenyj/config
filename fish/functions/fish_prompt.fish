@@ -53,11 +53,8 @@ function fish_prompt
     echo -n '┬─'
     set_color white
 
-    # Date
-    #_nim_prompt_wrapper $retc '' (date +%H:%M)
-    echo -n '['
-    echo -n (date +%H:%M)
-    echo -n '] '
+    _nim_prompt_wrapper $retc '' (tty)
+    and echo -n ' '
 
     echo -n [
 
@@ -83,8 +80,8 @@ function fish_prompt
     set_color white
     echo -n ':'
     set_color -o cyan
-    echo -n (prompt_pwd)
-    #echo -n (pwd)
+    #echo -n (prompt_pwd)
+    echo -n (pwd)
     set_color normal
     set_color white
     echo -n ']'
@@ -150,6 +147,9 @@ function fish_prompt
     #set_color $retc
     echo -n '╰─'
 
+    # Date
+    _nim_prompt_wrapper $retc '' (date +%H:%M)
+    and echo -n ' '
     _nim_prompt_wrapper $retc '' $ret_num
 
     set_color -o white
