@@ -9,4 +9,5 @@ vim.opt.pumblend = 0
 
 vim.opt.jumpoptions = "stack"
 vim.opt.relativenumber = false
+vim.opt.ignorecase = false
 --vim.lsp.inlay_hint.enable = false
