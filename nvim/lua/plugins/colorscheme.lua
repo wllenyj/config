@@ -4,8 +4,8 @@ return {
     "LazyVim/LazyVim",
     opts = {
       --colorscheme = "molokai-ori",
-      colorscheme = "dracula",
-      --colorscheme = "gruvbox",
+      --colorscheme = "dracula",
+      colorscheme = "gruvbox",
 
       --colorscheme = "onedark",
 
