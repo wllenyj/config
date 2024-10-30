@@ -76,7 +76,7 @@ function fish_prompt
     end
 
     #echo -n (prompt_hostname)
-    echo -n (/sbin/ifconfig | grep -w 'inet' | grep -v '127.0.0.1' | head -n 1 | awk '{print $2}')
+    echo -n (/sbin/ifconfig | grep -w 'inet' | grep -v '127.0.0.1' | grep -v '172.17.' | head -n 1 | awk '{print $2}')
     set_color white
     echo -n ':'
     set_color -o cyan
