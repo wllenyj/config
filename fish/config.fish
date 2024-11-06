@@ -12,5 +12,6 @@ eval "$(/opt/homebrew/bin/brew shellenv fish)"
 alias ls='ls --color=auto'
 alias ll='ls -al'
 alias fda='fd -H -I -g'
+alias rga='rg --no-ignore'
 
 atuin init fish | source
