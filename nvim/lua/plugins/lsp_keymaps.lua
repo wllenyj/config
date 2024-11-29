@@ -12,14 +12,14 @@ return {
       desc = "Goto Definition",
       has = "definition",
     }
-    keys[#keys + 1] = {
-      "gr",
-      function()
-        vim.lsp.buf.references({ reuse_win = false })
-      end,
-      desc = "References",
-      nowait = true,
-    }
+    --keys[#keys + 1] = {
+    --  "gr",
+    --  function()
+    --    vim.lsp.buf.references(nil, { reuse_win = false })
+    --  end,
+    --  desc = "References",
+    --  nowait = true,
+    --}
     keys[#keys + 1] = {
       "gI",
       function()
