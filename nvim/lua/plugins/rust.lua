@@ -4,6 +4,9 @@ return {
     server = {
       default_settings = {
         ["rust-analyzer"] = {
+          rustfmt = {
+            extraArgs = { "+nightly" },
+          },
           inlayHints = {
             typeHints = {
               enable = true,
