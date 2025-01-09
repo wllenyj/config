@@ -1,26 +1,26 @@
 return {
 
-    {
-        "nvim-cmp",
-        event = "InsertEnter",
-        --keys = "<leader>cp",
-        dependencies = {
-            {
-                "sourcegraph/sg.nvim",
-                dependencies = {
-                    "nvim-lua/plenary.nvim", --[[ "nvim-telescope/telescope.nvim ]]
-                },
-            },
-        },
-        opts = function(_, opts)
-            require("sg").setup(opts)
-            table.insert(opts.sources, 1, {
-                name = "cody",
-                group_index = 1,
-                priority = 101
-            })
-        end,
-    },
+    --{
+    --    "nvim-cmp",
+    --    event = "InsertEnter",
+    --    --keys = "<leader>cp",
+    --    dependencies = {
+    --        {
+    --            "sourcegraph/sg.nvim",
+    --            dependencies = {
+    --                "nvim-lua/plenary.nvim", --[[ "nvim-telescope/telescope.nvim ]]
+    --            },
+    --        },
+    --    },
+    --    opts = function(_, opts)
+    --        require("sg").setup(opts)
+    --        table.insert(opts.sources, 1, {
+    --            name = "cody",
+    --            group_index = 1,
+    --            priority = 101
+    --        })
+    --    end,
+    --},
     --{
     --  "nvim-lualine/lualine.nvim",
     --  optional = true,
