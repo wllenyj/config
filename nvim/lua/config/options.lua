@@ -11,3 +11,5 @@ vim.opt.jumpoptions = "stack"
 vim.opt.relativenumber = false
 vim.opt.ignorecase = false
 --vim.lsp.inlay_hint.enable = false
+
+--vim.g.snacks_animate = false
