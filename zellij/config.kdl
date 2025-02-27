@@ -19,10 +19,10 @@ keybinds clear-defaults=true {
 
         bind "Alt `" { GoToNextTab; SwitchToMode "Normal"; }
 
-        bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
-        bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
-        bind "Alt j" "Alt Down" { MoveFocus "Down"; }
-        bind "Alt k" "Alt Up" { MoveFocus "Up"; }
+        bind "Alt h" "Alt Left" { MoveFocus "Left"; SwitchToMode "Normal"; }
+        bind "Alt l" "Alt Right" { MoveFocus "Right"; SwitchToMode "Normal"; }
+        bind "Alt j" "Alt Down" { MoveFocus "Down"; SwitchToMode "Normal"; }
+        bind "Alt k" "Alt Up" { MoveFocus "Up"; SwitchToMode "Normal"; }
     }
     shared_except "locked" {
         bind "Alt g" { SwitchToMode "Locked"; }
