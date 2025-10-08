@@ -3,7 +3,7 @@ return {
     "dhananjaylatkar/cscope_maps.nvim",
     dependencies = {
       "folke/which-key.nvim",
-      "nvim-telescope/telescope.nvim",
+      "folke/snacks.nvim",
     },
     lazy = false,
     --config = function(_, opts)
@@ -13,9 +13,9 @@ return {
       prefix = "<localleader>g",
       skip_input_prompt = true,
       cscope = {
-        picker = "telescope",
+        picker = "snacks",
         skip_picker_for_single_result = true,
-        db_build_cmd_args = { "-Rbqkv" },
+        db_build_cmd = { "-Rbqkv" },
       },
     },
   },

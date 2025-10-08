@@ -18,6 +18,7 @@ return {
     },
   },
   opts = {
+    enable_git_status = false,
     filesystem = {
       window = {
         mappings = {
