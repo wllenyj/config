@@ -5,9 +5,16 @@ end
 set -x CLICOLOR 1
 set -x LSCOLORS GxFxCxDxBxegedabagaced
 
-set -x EDITOR /opt/homebrew/bin/nvim
-set -x PATH $PATH $HOME/bin /opt/homebrew/opt/binutils/bin $HOME/.cargo/bin
-eval "$(/opt/homebrew/bin/brew shellenv fish)"
+set -x EDITOR /home/lixiang/soft/nvim-linux-x86_64/bin/nvim
+
+set -x PATH $PATH $HOME/bin $HOME/.local/bin
+set -x PATH $PATH $HOME/.cargo/bin
+set -x PATH $PATH $HOME/soft/nvim-linux-x86_64/bin
+
+#export RUSTUP_DIST_SERVER="https://rsproxy.cn"
+#export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
+set -x RUSTUP_DIST_SERVER https://rsproxy.cn
+set -x RUSTUP_UPDATE_ROOT https://rsproxy.cn/rustup
 
 alias ls='ls --color=auto'
 alias ll='ls -al'
