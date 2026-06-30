@@ -48,6 +48,26 @@ if ! command -v atuin &> /dev/null; then
     cargo install atuin || exit 1
 fi
 
+if ! command -v fish &> /dev/null; then
+    echo "----------------------------------------"
+    echo "✅ 开始安装 fish..."
+    if ! command -v apt-add-repository &> /dev/null; then
+        sudo apt update && sudo apt install -y software-properties-common || exit 1
+    fi
+    sudo apt-add-repository -y ppa:fish-shell/release-4 || exit 1
+    sudo apt update && sudo apt install -y fish || exit 1
+fi
+
+# 注册 fish 到 /etc/shells 并设为默认 shell
+FISH_PATH=$(command -v fish)
+if ! grep -qx "$FISH_PATH" /etc/shells; then
+    echo "$FISH_PATH" | sudo tee -a /etc/shells >/dev/null
+fi
+if [[ "$(getent passwd $USER | cut -d: -f7)" != "$FISH_PATH" ]]; then
+    echo "✅ 设置 fish 为默认 shell (需要输入密码)"
+    chsh -s "$FISH_PATH"
+fi
+
 
 grep "bash/prompt.sh" $HOME/.bashrc >>/dev/null
 if [[ $? != 0 ]]; then
