@@ -8,6 +8,47 @@ HERE=$(readlink -f $0)
 CUR_PATH=$(cd $(dirname $HERE) && pwd)
 ((DEBUG)) && echo $CUR_PATH
 
+
+if ! command -v cargo &> /dev/null; then
+    if ! command -v curl &> /dev/null; then
+        echo "❌ 未检测到 curl 命令，请先安装 curl"
+        exit 1
+    else
+        echo "✅ 开始安装rust..."
+        echo "----------------------------------------"
+
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+	source $HOME/.bashrc
+    fi
+fi
+
+
+if ! command -v zellij &> /dev/null; then
+    echo "----------------------------------------"
+    echo "✅ 开始安装 zellij..."
+    cargo install --locked zellij || exit 1
+fi
+
+if [[ ! -d $HOME/.config/zellij ]]; then
+    ln -s $CUR_PATH/zellij $HOME/.config/zellij
+else
+    echo 'exist .config/zellij'
+fi
+
+if ! command -v rg &> /dev/null; then
+    echo "----------------------------------------"
+    echo "✅ 开始安装 ripgrep..."
+    cargo install ripgrep || exit 1
+fi
+
+if ! command -v atuin &> /dev/null; then
+    echo "----------------------------------------"
+    echo "✅ 开始安装 atuin..."
+    cargo install atuin || exit 1
+fi
+
+
 grep "bash/prompt.sh" $HOME/.bashrc >>/dev/null
 if [[ $? != 0 ]]; then
 	echo -e "\nsource $CUR_PATH/bash/prompt.sh" >>$HOME/.bashrc
@@ -48,8 +89,3 @@ else
 	echo 'exist .config/gitui'
 fi
 
-if [[ ! -d $HOME/.config/zellij ]]; then
-	ln -s $CUR_PATH/zellij $HOME/.config/zellij
-else
-	echo 'exist .config/zellij'
-fi
